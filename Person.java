@@ -5,11 +5,13 @@ public class Person{
     private String name;
     private int age;
     private int skill;
+    private String team;
 
-    Person(String name, int age, int skill){
+    Person(String name, int age, int skill, String team){
         this.name = name;
         this.age = age;
         this.skill = skill;
+        this.team = team;
     }
 
     void setName(String name){

@@ -22,7 +22,8 @@ public class Data{
                 String name = input.next();
                 int age = Integer.parseInt(input.next());
                 int skill = Integer.parseInt(input.next());
-                players[i] = new Person(name, age, skill);
+                String team = input.next();
+                players[i] = new Person(name, age, skill, team);
                 i++;
             }
             input.close();
