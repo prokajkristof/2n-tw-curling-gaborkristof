@@ -1,4 +1,5 @@
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import java.io.File;
 
@@ -60,5 +61,17 @@ public class Data{
             }
         }
         return teams;
+    }
+
+    static void writeTeamstoFile(String path, Team[] teams) {
+        try {
+            PrintWriter writer = new PrintWriter(path);
+            for (Team team : teams) {
+                writer.println(team.getName());
+            }
+            
+            writer.close();
+        }
+        catch (FileNotFoundException o) {};
     }
 }
