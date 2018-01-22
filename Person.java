@@ -40,4 +40,10 @@ public class Person{
     public int getSkill() {
         return skill;
     }
+    /**
+     * @return the team
+     */
+    public String getTeam() {
+        return team;
+    }
 }
