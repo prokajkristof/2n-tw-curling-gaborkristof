@@ -74,4 +74,16 @@ public class Data{
         }
         catch (FileNotFoundException o) {};
     }
+
+    static void writePlayerstoFile(String path, Person[] players) {
+        try {
+            PrintWriter writer = new PrintWriter(path);
+            for (Person player : players) {
+                writer.println(player.getName() + "," + player.getAge() + "," + player.getSkill() + "," + player.getTeam());
+            }
+            
+            writer.close();
+        }
+        catch (FileNotFoundException o) {};
+    }
 }

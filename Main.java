@@ -6,6 +6,8 @@ public class Main {
         Person j4 = new Person("Jani", 25, 75, "sa");
         Team[] teams = Data.getTeams("teams.csv");
         System.out.println(teams[1].getRating());
+        Person[] players = Data.getPersons("players.csv");
         Data.writeTeamstoFile("teams2.csv", teams);
+        Data.writePlayerstoFile("players2.csv", players);
     }
 }
