@@ -6,13 +6,11 @@ import java.io.File;
 
 public class Data{
 
-    static Person[] players;
-
-    public static Person[] readData(String playersCsv){
+    public static Person[] getPersons(String playersCsv){
+        Person[] players = new Person[0];
         try{
             File path = new File(playersCsv);
             Scanner input = new Scanner(path);
-            Person[] players = new Person[0];
             input.useDelimiter(",|\n");
             int i = 0;
             while(input.hasNext()) {
