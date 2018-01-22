@@ -5,10 +5,8 @@ public class Team {
 
     Team(String name) {
         this.name = name;
+        members = new Person[0];
         rating = 0;
-        for (int i = 0; i < members.lenght; i++) {
-            rating += members[i].getSkill();
-        }
     }
     /**
      * @return the members
@@ -30,13 +28,14 @@ public class Team {
     }
     
     public void addMember(Person p) {
-        if (members.lenght < 3) {
-            Person[] temp = new Person[members.lenght];
-            temp[members.lenght] = p;
-            for (int j = 0; j < members.lenght; j ++) {
-                temp[i] = members[i];
+        if (members.length  < 3) {
+            Person[] temp = new Person[members.length + 1];
+            temp[members.length] = p;
+            for (int j = 0; j < members.length; j ++) {
+                temp[j] = members[j];
             }
             members = temp;
+            rating += p.getSkill();
         }
     }
     
