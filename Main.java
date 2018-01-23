@@ -1,15 +1,25 @@
 public class Main {
     public static void main(String[] args) {
-        Person jani = new Person("Jani", 25, 75, "sad");
-        Person j2 = new Person("Jani", 25, 75, "sa");
-        Person j3 = new Person("Jani", 25, 75, "s");
-        Person j4 = new Person("Jani", 25, 75, "sa");
-        Team[] teams = Data.getTeams("teams.csv");
-        for (Team var : teams) {
-            System.out.println(var.getName() + " rating: " + var.getRating());
+        Simulation result = generateSimulation(Integer.parseInt(args[0]));
+        for (int i = 0; i < Integer.parseInt(args[0]); i++) {
+            System.out.println(result.getStorage()[i][2].getName());
+
         }
-        Team[] parbaj = Simulation.getRandomTeams(teams);
-        System.out.println(parbaj[0].getName() + " vs " +parbaj[1].getName());
-        System.out.println(Simulation.getResult(parbaj[0], parbaj[1], true).getName());
+        
+    }
+
+    public static Simulation generateSimulation(int round) {
+        Team[] teams = Data.getTeams("teams.csv");
+        Simulation result = new Simulation();
+        for (int i = 0; i < round; i++) {
+            Team[] competitors = Simulator.getRandomTeams(teams);
+            Team winner = Simulator.getWinner(competitors[0], competitors[1]);
+            Team[] data = new Team[3];
+            data[0] = competitors[0];
+            data[1] = competitors[1];
+            data[2] = winner;
+            result.add(data);
+        }
+        return result;
     }
 }
