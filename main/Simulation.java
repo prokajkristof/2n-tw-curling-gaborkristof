@@ -1,13 +1,14 @@
 public class Simulation {
 
-    private Team[][] storage = new Team[0][];
+
+    private MatchResult[] storage = new MatchResult[0];
 
     public void generateData() {
         String[] data = new String[storage.length];
         String line;
         int i = 0;
-        for (Team[] team : storage) {
-            line = team[0].getName() + "," +team[1].getName() + "," +team[2].getName();
+        for (MatchResult match : storage) {
+            line = match.getTeamA().getName() + "," + match.getTeamB().getName() + "," + match.getMatchWinner().getName();
             System.out.println(line);
             data[i] = line;
             i++;
@@ -20,9 +21,9 @@ public class Simulation {
     }
     
 
-    public void add(Team[] o) {
+    public void add(MatchResult o) {
         int num = storage.length;
-        Team[][] temp = new Team[num + 1][];
+        MatchResult[] temp = new MatchResult[num + 1];
         for (int i = 0; i < storage.length; i++) {
             temp[i] = storage[i];
         }
@@ -30,7 +31,7 @@ public class Simulation {
         storage = temp;
     }
 
-    public Team[][] getStorage() {
+    public MatchResult[] getStorage() {
         return storage;
     }
     
