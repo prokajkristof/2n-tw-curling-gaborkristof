@@ -86,4 +86,14 @@ public class Data{
         }
         catch (FileNotFoundException o) {};
     }
+    public static void writeData(String[] data, String fileName) {
+        try {
+            PrintWriter writer = new PrintWriter(fileName);
+            for (String line : data) {
+                writer.println(line);                  
+            }
+            writer.close();
+        }
+        catch (FileNotFoundException o) {};
+    }
 }
