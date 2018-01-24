@@ -1,4 +1,4 @@
-import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
+import java.util.Random;
 
 public class Simulator{
     Simulation simulation;
@@ -7,8 +7,8 @@ public class Simulator{
         this.simulation = simulation;
         this.logger = logger;
     }
-    public Result run(){
-        return result;
+    public void run(){
+        
     }
     public static Team getResult(Team team1, Team team2, boolean win) {
         Random random = new Random();
