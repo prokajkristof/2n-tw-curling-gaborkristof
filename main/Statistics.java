@@ -1,8 +1,11 @@
 public class Statistics{
-    public generateData(){
+    public void generateData(){
 
     }
-    public load(){
-        
+    public Simulation load(){
+         
+        Simulation asd = new Simulation();
+        return asd;
     }
+
 }
