@@ -25,4 +25,7 @@ public class Logger{
             catch (FileNotFoundException o) {};
         }
     }
+    public void println(String message) {
+        System.out.println(message);
+    }
 }
