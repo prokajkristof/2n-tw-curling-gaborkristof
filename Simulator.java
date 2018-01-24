@@ -3,7 +3,7 @@ import java.util.Random;
 public class Simulator{
 
     public static Team getWinner(Team team1, Team team2) {
-        Rabdom random = new Random();
+        Random random = new Random();
         Team winner = team1;
         int team1Score = random.nextInt(60) + 1 + team1.getRating();
         int team2Score = random.nextInt(60) + 1 + team2.getRating();
