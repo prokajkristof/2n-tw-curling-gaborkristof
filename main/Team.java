@@ -38,5 +38,11 @@ public class Team {
             rating += p.getSkill();
         }
     }
+    public boolean equals(Team a) {
+        if(this.name.equals(a.getName())) {
+            return true;
+        }
+        return false;
+    }
     
 }

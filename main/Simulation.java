@@ -9,7 +9,6 @@ public class Simulation {
         int i = 0;
         for (MatchResult match : storage) {
             line = match.getTeamA().getName() + "," + match.getTeamB().getName() + "," + match.getMatchWinner().getName();
-            System.out.println(line);
             data[i] = line;
             i++;
         }

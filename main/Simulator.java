@@ -3,12 +3,35 @@ import java.util.Random;
 public class Simulator{
     Simulation simulation;
     Logger logger;
+    Result result;
     public Simulator(Simulation simulation, Logger logger){
         this.simulation = simulation;
         this.logger = logger;
     }
-    public void run(){
-        
+    public Result run(){
+        float winPercentage;
+        int countA = 0;
+        int countB = 0;
+        MatchResult[] storage = simulation.getStorage();
+        Result result;
+        for (MatchResult matchResult : storage) {
+            if (matchResult.getTeamA().equals(matchResult.getMatchWinner())) {
+                countA++;
+            }
+            else {
+                countB++;
+            }
+        }
+        if (countA > countB) {
+            winPercentage = (float) countA / (float) storage.length * 100;
+            result = new Result(storage[0].getTeamA(), storage[0].getTeamB(), winPercentage);
+        }
+        else {
+            winPercentage = (float) countB / (float) storage.length * 100;
+            result = new Result(storage[0].getTeamB(), storage[0].getTeamA(), winPercentage);
+        }
+        return result;
+
     }
     public static Team getWinner(Team team1, Team team2) {
         Random random = new Random();
