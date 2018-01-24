@@ -1,7 +1,18 @@
 public class Main {
     public static void main(String[] args) {
-        Simulation result = generateSimulation(Integer.parseInt(args[0]));
-        result.generateData();
+        Simulation result;
+        if (args.length != 0) {
+            result = generateSimulation(Integer.parseInt(args[0]));
+            result.generateData();
+        }
+        else {
+            result = Simulation.load();
+        }
+        for (MatchResult winner : result.getStorage()) {
+            System.out.println(winner.getMatchWinner().getName());
+        }
+        
+        
     }
 
     public static Simulation generateSimulation(int round) {

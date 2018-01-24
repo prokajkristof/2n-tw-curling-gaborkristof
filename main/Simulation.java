@@ -16,8 +16,14 @@ public class Simulation {
         Data.writeData(data, "simulation.csv");
     }
 
-    public Simulation load() {
-        return this;
+    public static Simulation load() {
+        Simulation result = new Simulation();
+        Team[] teams = Data.getTeams("simulation.csv");
+        for (int i = 0; i < teams.length; i+=3) {
+            MatchResult match = new MatchResult(teams[i], teams[i+1], teams[i+2]);
+            result.add(match);
+        }
+        return result;
     }
     
 
