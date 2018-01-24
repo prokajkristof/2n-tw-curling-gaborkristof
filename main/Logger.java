@@ -14,12 +14,12 @@ public class Logger{
         Date now = new Date();
         now.getDate();
         if (console){
-            System.out.format("%s\n %s %s\n", now, type, message);
+            System.out.format("%s\n \t type: %s, message: %s\n", now, type, message);
         }else{
             try {
                 File path = new File("logcsv.csv");
                 PrintWriter writer = new PrintWriter(path);
-                writer.format("%s\n %s %s\n", now, type, message);
+                writer.format("%s\n \t type: %s, message: %s\n", now, type, message);
                 writer.close();
             }
             catch (FileNotFoundException o) {};
