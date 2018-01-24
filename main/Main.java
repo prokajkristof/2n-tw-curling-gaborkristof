@@ -10,11 +10,8 @@ public class Main {
         for (int i = 0; i < round; i++) {
             Team[] competitors = Simulator.getRandomTeams(teams);
             Team winner = Simulator.getWinner(competitors[0], competitors[1]);
-            Team[] data = new Team[3];
-            data[0] = competitors[0];
-            data[1] = competitors[1];
-            data[2] = winner;
-            result.add(data);
+            MatchResult match = new MatchResult(competitors[0], competitors[1], winner);
+            result.add(match);
         }
         return result;
     }
