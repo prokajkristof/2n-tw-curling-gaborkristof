@@ -1,3 +1,4 @@
+package main;
 public class Main {
     public static void main(String[] args) {
         Simulation result;
@@ -19,7 +20,7 @@ public class Main {
     }
 
     public static Simulation generateSimulation(int round) {
-        Team[] teams = Data.getTeams("teams.csv");
+        Team[] teams = Data.getTeams("csv/teams.csv");
         Simulation result = new Simulation();
         Team[] competitors = Simulator.getRandomTeams(teams);
         for (int i = 0; i < round; i++) {

@@ -1,3 +1,4 @@
+package main;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
@@ -52,7 +53,7 @@ public class Data{
             input.close();
         }
         catch (FileNotFoundException o) {}
-        Person[] players = getPersons("players.csv");
+        Person[] players = getPersons("csv/players.csv");
         for (int i = 0; i < teams.length; i++) {
             for (Person player : players) {
                 if (player.getTeam().equals(teams[i].getName())) {

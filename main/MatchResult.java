@@ -1,3 +1,4 @@
+package main;
 public class MatchResult {
     private Team teamA;
     private Team teamB;
