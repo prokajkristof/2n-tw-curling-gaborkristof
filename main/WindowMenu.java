@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -68,9 +69,9 @@ public class WindowMenu {
         JButton mixtipsz = new JButton("MIXTIPSZ");
         JButton simulation = new JButton("SIMULATION");
         JButton back = new JButton("BACK");
-        button.setBounds(x / 2 - 100 / 2, y / 2 - 100 / 2, 100, 30);
-        mixtipsz.setBounds(x / 2 - 100 / 2, y / 2 - 35 / 2, 100, 30);
-        simulation.setBounds(x / 2 - 100 / 2, y / 2 + 31 / 2, 100, 30);
+        button.setBounds(x / 2 - 150 / 2, y / 2 - 100 / 2, 150, 30);
+        mixtipsz.setBounds(x / 2 - 150 / 2, y / 2 - 35 / 2, 150, 30);
+        simulation.setBounds(x / 2 - 150 / 2, y / 2 + 31 / 2, 150, 30);
         back.setBounds(x / 2 - 100 / 2, y / 2 + 100 / 2, 100, 30);
         panel.add(button);
         panel.add(mixtipsz);
@@ -102,9 +103,12 @@ public class WindowMenu {
         panel.setLayout(null);
         JButton back = new JButton("BACK");
         JButton generate = new JButton("GENERATE");
-        JTextField input = new JTextField("0");
+        JTextField input = new JTextField("100");
+        JTable tableA = new JTable(4,3);
+        JTable tableB = new JTable(4,3);
         
         
+
         Team[] teams = Data.getTeams("csv/teams.csv");
         String[] strTeams = new String[teams.length];
         for (int i = 0; i < teams.length; i++) {
@@ -115,9 +119,12 @@ public class WindowMenu {
         JComboBox tB = new JComboBox(strTeams);
         JTextField output = new JTextField();
         
-        output.setBounds(10, 120, 700, 100);
+        output.setBounds(10, 120, x-30, 100);
         tA.setBounds(10, 10, 300, 100);
-        tB.setBounds(350, 10, 300, 100);
+        tB.setBounds(x - 330, 10, 300, 100);
+        tableA.setBounds(10, 300, 200, 65);
+        tableB.setBounds(x - 230, 300, 200, 65);
+        
         
         
         input.setBounds(x / 2 - 305 / 2, y / 2 - 100 / 2, 100, 30);
@@ -130,15 +137,22 @@ public class WindowMenu {
         panel.add(tA);
         panel.add(tB);
         panel.add(output);
+        panel.add(tableA);
+        panel.add(tableB);
 
         
         ActionListener clickButton = new ActionListener(){
         
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println(e.getActionCommand());
+                
                 if (e.getActionCommand().equals("BACK")) {
                     panel.setVisible(false);
                     subMenu();
+                }
+                else if (e.getActionCommand().equals("comboBoxChanged")) {
+                    changeTable(tableA, tableB, tA, tB, teams);
                 }
                 else if (e.getActionCommand().equals("GENERATE")) {
                     int rounds = Integer.parseInt(input.getText());
@@ -166,6 +180,48 @@ public class WindowMenu {
         };
         back.addActionListener(clickButton);
         generate.addActionListener(clickButton);
+        tA.addActionListener(clickButton);
+        tB.addActionListener(clickButton);
     }
+    
+    static void changeTable(JTable tableA, JTable tableB, JComboBox teamA, JComboBox teamB, Team[] teams) {
+        String teamFirst = teamA.getSelectedItem().toString();
+        String teamSecond = teamB.getSelectedItem().toString();
+        Team a1 = teams[0];
+        Team b1 = teams[1];
+        for (int i = 0; i < teams.length; i++) {
+            if (teams[i].getName().equals(teamFirst)) {
+                a1 = teams[i];
+            }
+            if (teams[i].getName().equals(teamSecond)) {
+                b1 = teams[i];
+            }
+        }
+        tableA.setValueAt("Name", 0, 0);
+        tableA.setValueAt("Skill", 0, 1);
+        tableA.setValueAt("Age", 0, 2);
+        tableB.setValueAt("Name", 0, 0);
+        tableB.setValueAt("Skill", 0, 1);
+        tableB.setValueAt("Age", 0, 2);
+        String nameA, nameB;
+        int skillA, skillB;
+        int ageA, ageB;
+        for (int i = 0; i < a1.getMembers().length; i++) {
+            nameA = a1.getMembers()[i].getName();
+            nameB = b1.getMembers()[i].getName();
+            skillA = a1.getMembers()[i].getSkill();
+            skillB = b1.getMembers()[i].getSkill();
+            ageA = a1.getMembers()[i].getAge();
+            ageB = b1.getMembers()[i].getAge();
+            tableA.setValueAt(nameA, i + 1, 0);
+            tableA.setValueAt(skillA, i + 1, 1);
+            tableA.setValueAt(ageA, i + 1, 2);
+            tableB.setValueAt(nameB, i + 1, 0);
+            tableB.setValueAt(skillB, i + 1, 1);
+            tableB.setValueAt(ageB, i + 1, 2);
+        }
+            
+        }
 
-}
+
+    }
