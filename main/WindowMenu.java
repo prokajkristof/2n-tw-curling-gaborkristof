@@ -145,7 +145,6 @@ public class WindowMenu {
         
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(e.getActionCommand());
                 
                 if (e.getActionCommand().equals("BACK")) {
                     panel.setVisible(false);
@@ -156,7 +155,7 @@ public class WindowMenu {
                 }
                 else if (e.getActionCommand().equals("GENERATE")) {
                     int rounds = Integer.parseInt(input.getText());
-                    
+                    long start = System.currentTimeMillis();
                     String teamFirst = tA.getSelectedItem().toString();
                     String teamSecond = tB.getSelectedItem().toString();
                     Team a1 = teams[0];
@@ -173,7 +172,9 @@ public class WindowMenu {
                     Simulation sim = Main.generateSimulation(rounds, a1, b1);
                     Simulator simulator = new Simulator(sim, new Logger(true));
                     Result result = simulator.run();
-                    output.setText(result.getWinner().getName() + "'s chance to win: " + Math.round(result.getProbability()) + " %.");
+                    String chanche = String.format("%.2f", result.getProbability());
+                    long endTime = System.currentTimeMillis();
+                    output.setText(result.getWinner().getName() + "'s chance to win:  " + chanche +" %." + " The simulation takes: " + (endTime - start) + " ms");
                     
                 }
             }
